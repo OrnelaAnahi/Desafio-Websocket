@@ -11,7 +11,7 @@ socket.on('productos', (productos)=>{
   let refresh_table = `                                                        
     <td align="center">${productos[lastPord].nombre}</td>
     <td align="center">${productos[lastPord].precio}</td>
-    <td align="center"><img src="${productos[lastPord].url}" height="170px"  alt="5"></td>
+    <td align="center"><img src="${productos[lastPord].url_imagen}" height="150px"  alt="5"></td>
   `
   const tr = document.createElement('tr')
   tr.innerHTML = refresh_table
@@ -22,6 +22,7 @@ socket.on('productos', (productos)=>{
 
 const formProductos = document.getElementById('formProducts')
 formProductos.addEventListener('submit', function(e){
+
   e.preventDefault()
   let producto ={
     nombre: e.target.nombre.value,
@@ -33,8 +34,10 @@ formProductos.addEventListener('submit', function(e){
   e.target.reset()
 })
 
+
 const formMsj = document.getElementById('formChat')
 formMsj.addEventListener('submit', function(e){
+  debugger
   e.preventDefault
   let msj ={
     mail: e.target.mail.value,
@@ -47,7 +50,7 @@ formMsj.addEventListener('submit', function(e){
 function renderMsj(msj){
   const html = msj.map(e=>{
     return `
-      <div>
+      <div class="msj">
         <b style="color:blue;">${e.mail}</b>
         [<span style="color:brown;">${e.fyh}</span>] :
         <i style="color:green;">${e.mensaje}</i>
