@@ -6,7 +6,7 @@ socket.on('msj_del_backend', (data) => {
 })
 
 
-socket.on('productos', (productos)=>{
+socket.on('productos', (productos) => {
   lastPord = productos.length - 1;
   let refresh_table = `                                                        
     <td align="center">${productos[lastPord].nombre}</td>
@@ -21,10 +21,10 @@ socket.on('productos', (productos)=>{
 
 
 const formProductos = document.getElementById('formProducts')
-formProductos.addEventListener('submit', function(e){
+formProductos.addEventListener('submit', function (e) {
 
   e.preventDefault()
-  let producto ={
+  let producto = {
     nombre: e.target.nombre.value,
     precio: parseInt(e.target.precio.value),
     url: e.target.url.value
@@ -36,19 +36,35 @@ formProductos.addEventListener('submit', function(e){
 
 
 const formMsj = document.getElementById('formChat')
-formMsj.addEventListener('submit', function(e){
+formMsj.addEventListener('submit', function (e) {
   debugger
   e.preventDefault
-  let msj ={
-    mail: e.target.mail.value,
-    mensaje: e.target.mensaje.value
+  let msj = {
+    author: {
+      mail: e.target.mail.value,
+      nombre: e.target.nombre.value,
+      apellido: e.target.apellido.value,
+      edad: e.target.edad.value,
+      alias: e.target.alias.value,
+    },
+    mensaje: {
+      id: Math.floor(Math.random() * 20),
+      author: {
+        mail: e.target.mail.value,
+        nombre: e.target.nombre.value,
+        apellido: e.target.apellido.value,
+        edad: e.target.edad.value,
+        alias: e.target.alias.value,
+      },
+      comment: e.target.mensaje.value,
+    }
   }
   socket.emit('nuevoMensaje', msj)
   e.target.reset()
 })
 
-function renderMsj(msj){
-  const html = msj.map(e=>{
+function renderMsj(msj) {
+  const html = msj.map(e => {
     return `
       <div class="msj">
         <b style="color:blue;">${e.mail}</b>
@@ -59,6 +75,6 @@ function renderMsj(msj){
   }).join(" ")
   document.getElementById("cajaMensajes").innerHTML = html
 }
-socket.on('mensajes', (msj)=>{
+socket.on('mensajes', (msj) => {
   renderMsj(msj)
 })

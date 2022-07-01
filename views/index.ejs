@@ -72,8 +72,30 @@
     <div class="divChat">
       <h2>CHAT</h2>
       <form id="formChat">
-        <input type="mail" name="mail" placeholder="Ingrese su mail" id="mail" required>
-        <input type="text" name="mensaje" placeholder="Ingrese su mensaje" id="mensaje" required>
+        <div class="cajitaForm">
+          <label for="mail">Mail</label>
+          <input type="mail" name="mail" placeholder="Ingrese su mail" id="mail" required>
+        </div>
+        <div class="cajitaForm">
+          <label for="nombre">Nombre</label>
+          <input type="text" name="nombre" placeholder="ingrese su nombre" id="nombre" required>
+        </div>
+        <div class="cajitaForm">
+          <label for="apellido">Apellido</label>
+          <input type="text" name="apellido" placeholder="ingrese su apellido" id="apellido" required>
+        </div>
+        <div class="cajitaForm">
+          <label for="edad">Edad</label>
+          <input type="number" min="13" name="edad" placeholder="ingrese su edad" id="edad" required>
+        </div>
+        <div class="cajitaForm">
+          <label for="alias">Alias</label>
+          <input type="text" name="alias" placeholder="ingrese su alias" id="alias" required>
+        </div>
+        <div class="cajitaForm">
+          <label for="mensaje">Ingrese su mensaje</label>
+          <textarea name="mensaje" id="mensaje" cols="30" rows="10" required></textarea>
+        </div>
         <input type="submit" value="Enviar">
       </form>
       <div id="cajaMensajes">

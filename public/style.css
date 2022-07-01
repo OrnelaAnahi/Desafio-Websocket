@@ -56,7 +56,19 @@ main{
 .msj{
   padding: 10px;
 }
+#formChat{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
+.cajitaForm{
+  width: 60%;
+  padding: 5px;
+  margin: 5px;
+  border-radius: 5px;
+}
 
 .color1 {color: #2095d8;}
 .color2 {color: #f384e5;}

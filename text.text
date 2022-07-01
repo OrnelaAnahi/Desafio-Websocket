@@ -1,0 +1,78 @@
+{
+  entities: {
+    posts: {
+      mensajes: {
+        id: 'mensajes',
+        mensajes: [
+          {
+            author: {
+              id: '1',
+              mail: 'nelladelugo@gmail.com',
+              nombre: 'Ornela',
+              apellido: 'Lugo',
+              edad: '18',
+              alias: 'Orne'
+            },
+            mensaje: {
+              id: 9,
+              author: {
+                id: '1',
+                mail: 'nelladelugo@gmail.com',
+                nombre: 'Ornela',
+                apellido: 'Lugo',
+                edad: '18',
+                alias: 'Orne'
+              },
+              comment: 'Holaa\n'
+            }
+          },
+          {
+            author: {
+              id: '2',
+              mail: 'ivanlugo@gmail.com',
+              nombre: 'Ivan',
+              apellido: 'Lugo',
+              edad: '25',
+              alias: 'Pablo'
+            },
+            mensaje: {
+              id: 6,
+              author: {
+                id: '2',
+                mail: 'ivanlugo@gmail.com',
+                nombre: 'Ivan',
+                apellido: 'Lugo',
+                edad: '25',
+                alias: 'Pablo'
+              },
+              comment: 'Que tal?'
+            }
+          },
+          {
+            author: {
+              id: '3',
+              mail: 'eledelugo@gmail.com',
+              nombre: 'Julia',
+              apellido: 'Aquino',
+              edad: '45',
+              alias: 'Ele'
+            },
+            mensaje: {
+              id: 0,
+              author: {
+                id: '3',
+                mail: 'eledelugo@gmail.com',
+                nombre: 'Julia',
+                apellido: 'Aquino',
+                edad: '45',
+                alias: 'Ele'
+              },
+              comment: 'Holaa'
+            }
+          }
+        ]
+      }
+    }
+  },
+  result: 'mensajes'
+}
