@@ -5,6 +5,11 @@ const app = express()
 const http = require('http')
 const server = http.createServer(app)
 
+// JSON
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
+
 // COOKIE, SESSION Y MONGO
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
@@ -33,9 +38,9 @@ app.use(session({
     mongoUrl: 'mongodb+srv://ornela_anahi:ornela123@cluster0.dxfd6.mongodb.net/?retryWrites=true&w=majority',
     mongoOptions: advancedOptions
   }),
-  secret: 'secret',
-  resave: false,
-  saveUninitialized: false
+  secret: 'key',
+  resave: true,
+  saveUninitialized: true
 }))
 
 

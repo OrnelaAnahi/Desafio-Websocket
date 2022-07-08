@@ -11,5 +11,12 @@ router.get('/', async (req, res) => {
   res.render('index', { todosLosProductos })
 })
 
+router.post('/logout', (req, res) => {
+  setTimeout(() => {
+    console.log('hola')
+    // req.session.destroy()
+    res.redirect('/api/login')
+  }, 2000)
+})
 
 module.exports = router

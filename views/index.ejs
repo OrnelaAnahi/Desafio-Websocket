@@ -18,90 +18,106 @@
     <h1>Mi app</h1>
   </header>
   <main>
-    <div class="formProducts">
-      <h2>Formulario de productos</h2>
-      <form id="formProducts">
-        <div class="spaceForm">
-          <label for="nombre">Nombre</label>
-          <input type="text" id="nombre" name="nombre" required>
-        </div>
-        <div class="spaceForm">
-          <label for="precio">Precio</label>
-          <input type="number" id="precio" name="precio" required>
-        </div>
-        <div class="spaceForm">
-          <label for="Imagen">URL de Imagen</label>
-          <input type="url" id="url" name="url" required>
-        </div>
-        <div class="spaceForm">
-          <input class="enviar" type="submit" value="Enviar">
-        </div>
-      </form>
+    <div id="hastaLuego">
+      <% if (session) { %>
+        <h2>Hasta luego <%= session.nombre %></h2>
+      <% } %>
     </div>
-    <table id="tabla" cellspacing="0" cellpadding="50">
-      <thead>
-        <tr>
-          <th scope="col">Producto</th>
-          <th scope="col">Precio</th>
-          <th scope="col">Foto</th>
-        </tr>
-      </thead>
-      <% if(todosLosProductos.length===0) { %>
-        <tbody id="cajaTbody">
+    <div id="ocultarLogout">
+      <div class="bienvenido">
+        <% if (session) { %>
+          <h2>Bienvenido/a <%= session.nombre %></h2>
+          <form action="/logout" method="post">
+            <button id="desloguear">Desloguarse</button>
+          </form>
+        <% } %>
+      </div>
+      <div class="formProducts">
+        <h2>Formulario de productos</h2>
+        <form id="formProducts">
+          <div class="spaceForm">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" required>
+          </div>
+          <div class="spaceForm">
+            <label for="precio">Precio</label>
+            <input type="number" id="precio" name="precio" required>
+          </div>
+          <div class="spaceForm">
+            <label for="Imagen">URL de Imagen</label>
+            <input type="url" id="url" name="url" required>
+          </div>
+          <div class="spaceForm">
+            <input class="enviar" type="submit" value="Enviar">
+          </div>
+        </form>
+      </div>
+      <table id="tabla" cellspacing="0" cellpadding="50">
+        <thead>
           <tr>
-            <td id="no hay datos" colspan="3">No hay datos</td>
-
+            <th scope="col">Producto</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Foto</th>
           </tr>
-        </tbody>
-        <% } else { %>
-          <% for(let i=0; i<todosLosProductos.length; i++) { %>
+        </thead>
+        <% if(todosLosProductos.length===0) { %>
+          <tbody id="cajaTbody">
             <tr>
-              <td align="center">
-                <%=todosLosProductos[i].nombre %>
-              </td>
-              <td align="center">
-                <%=todosLosProductos[i].precio %>
-              </td>
-              <td align="center">
-                <img src="<%=todosLosProductos[i].url_imagen%>" height="150px" alt="5">
-              </td>
-
+              <td id="no hay datos" colspan="3">No hay datos</td>
+  
             </tr>
-            <% }}%>
-    </table>
-    <div class="divChat">
-      <h2>CHAT</h2>
-      <form id="formChat">
-        <div class="cajitaForm">
-          <label for="mail">Mail</label>
-          <input type="mail" name="mail" placeholder="Ingrese su mail" id="mail" required>
+          </tbody>
+          <% } else { %>
+            <% for(let i=0; i<todosLosProductos.length; i++) { %>
+              <tr>
+                <td align="center">
+                  <%=todosLosProductos[i].nombre %>
+                </td>
+                <td align="center">
+                  <%=todosLosProductos[i].precio %>
+                </td>
+                <td align="center">
+                  <img src="<%=todosLosProductos[i].url_imagen%>" height="150px" alt="5">
+                </td>
+  
+              </tr>
+              <% }}%>
+      </table>
+      <div class="divChat">
+        <h2>CHAT</h2>
+        <form id="formChat">
+          <div class="cajitaForm">
+            <label for="mail">Mail</label>
+            <input type="mail" name="mail" placeholder="Ingrese su mail" id="mail" required>
+          </div>
+          <div class="cajitaForm">
+            <label for="nombre">Nombre</label>
+            <input type="text" name="nombre" placeholder="ingrese su nombre" id="nombre" required>
+          </div>
+          <div class="cajitaForm">
+            <label for="apellido">Apellido</label>
+            <input type="text" name="apellido" placeholder="ingrese su apellido" id="apellido" required>
+          </div>
+          <div class="cajitaForm">
+            <label for="edad">Edad</label>
+            <input type="number" min="13" name="edad" placeholder="ingrese su edad" id="edad" required>
+          </div>
+          <div class="cajitaForm">
+            <label for="alias">Alias</label>
+            <input type="text" name="alias" placeholder="ingrese su alias" id="alias" required>
+          </div>
+          <div class="cajitaForm">
+            <label for="mensaje">Ingrese su mensaje</label>
+            <textarea name="mensaje" id="mensaje" cols="30" rows="10" required></textarea>
+          </div>
+          <input type="submit" value="Enviar">
+        </form>
+        <div id="cajaMensajes">
+  
         </div>
-        <div class="cajitaForm">
-          <label for="nombre">Nombre</label>
-          <input type="text" name="nombre" placeholder="ingrese su nombre" id="nombre" required>
-        </div>
-        <div class="cajitaForm">
-          <label for="apellido">Apellido</label>
-          <input type="text" name="apellido" placeholder="ingrese su apellido" id="apellido" required>
-        </div>
-        <div class="cajitaForm">
-          <label for="edad">Edad</label>
-          <input type="number" min="13" name="edad" placeholder="ingrese su edad" id="edad" required>
-        </div>
-        <div class="cajitaForm">
-          <label for="alias">Alias</label>
-          <input type="text" name="alias" placeholder="ingrese su alias" id="alias" required>
-        </div>
-        <div class="cajitaForm">
-          <label for="mensaje">Ingrese su mensaje</label>
-          <textarea name="mensaje" id="mensaje" cols="30" rows="10" required></textarea>
-        </div>
-        <input type="submit" value="Enviar">
-      </form>
-      <div id="cajaMensajes">
-
       </div>
     </div>
+
   </main>
   <footer>
     <p>&copy; 2020 - Todos los derechos reservados</p>

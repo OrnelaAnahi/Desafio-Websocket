@@ -78,3 +78,13 @@ function renderMsj(msj) {
 socket.on('mensajes', (msj) => {
   renderMsj(msj)
 })
+
+const desloguear = document.getElementById('desloguear')
+const hastaLuego = document.getElementById('hastaLuego')
+const ocultarLogout = document.getElementById('ocultarLogout')
+
+
+desloguear.addEventListener('click', function (e) {
+  ocultarLogout.style.display = 'none'
+  hastaLuego.style.display = 'block'
+})

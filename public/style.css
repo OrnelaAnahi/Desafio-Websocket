@@ -70,6 +70,12 @@ main{
   border-radius: 5px;
 }
 
+
+#hastaLuego{
+  display: none;
+}
+
+
 .color1 {color: #2095d8;}
 .color2 {color: #f384e5;}
 .color3 {color: #f6b7a6;}

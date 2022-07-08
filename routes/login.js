@@ -12,8 +12,7 @@ router.post('/', async (req, res) => {
   for (const key in req.body) {
     req.session[key] = req.body[key]
   }
-  res.send({ 'Sessionn------------------': req.session })
-  // res.render('index', { todosLosProductos: await productos.getAllProducts() })
+  res.render('index', { todosLosProductos: await productos.getAllProducts(), session: req.session })
 })
 
 
