@@ -1,23 +1,23 @@
 const knexSQlite = require('../db/dbSQlite')
 
-class ContenedorMensajes{
-  constructor(table){
+class ContenedorMensajes {
+  constructor(table) {
     this.table = table
   }
 
-  addMensaje(mail,mensaje){
-    let msj = {mail, mensaje}
-    knexSQlite(this.table).insert(msj).then(()=>{
+  addMensaje(mail, mensaje) {
+    let msj = { mail, mensaje }
+    knexSQlite(this.table).insert(msj).then(() => {
       console.log('mensaje agregado')
-    }).catch((err)=>{
+    }).catch((err) => {
       console.log(err)
     })
   }
 
-  getAllMensajes(){
-    const mensajes = knexSQlite.from('mensajes').select('*').then((data)=>{
+  getAllMensajes() {
+    const mensajes = knexSQlite.from('mensajes').select('*').then((data) => {
       return data
-    }).catch((err)=>{
+    }).catch((err) => {
       console.log(err)
     })
     return mensajes

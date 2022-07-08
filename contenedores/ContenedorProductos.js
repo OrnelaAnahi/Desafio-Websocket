@@ -1,27 +1,27 @@
 const knex = require('../src/db')
 
-class ContenedorProductos{
+class ContenedorProductos {
 
-  constructor(table){
+  constructor(table) {
     this.table = table
   }
-  
-  addProduct(nombre,precio,url_imagen){
 
-    let product ={nombre, precio, url_imagen}
+  addProduct(nombre, precio, url_imagen) {
 
-    knex(this.table).insert(product).then(()=>{
+    let product = { nombre, precio, url_imagen }
+
+    knex(this.table).insert(product).then(() => {
       console.log('producto agregado')
-    }).catch((err)=>{
+    }).catch((err) => {
       console.log(err)
     })
 
   }
 
-  getAllProducts(){
-    const productos = knex.from(this.table).select('*').then((data)=>{
+  getAllProducts() {
+    const productos = knex.from(this.table).select('*').then((data) => {
       return data
-    }).catch((err)=>{
+    }).catch((err) => {
       console.log(err)
     })
     return productos

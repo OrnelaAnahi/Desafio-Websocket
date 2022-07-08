@@ -1,27 +1,27 @@
 const { promises: fs } = require('fs')
 
-const { normalize, schema } = require("normalizr")
-const { inspect } = require("util")
+// const { normalize, schema } = require("normalizr")
+// const { inspect } = require("util")
 
-// ESQUEMA PARA NORMALIZACION
-const authorSchema = new schema.Entity('author')
+// // ESQUEMA PARA NORMALIZACION
+// const authorSchema = new schema.Entity('author')
 
-const mensajeSchema = new schema.Entity('mensaje', {
-  user: authorSchema,
-})
+// const mensajeSchema = new schema.Entity('mensaje', {
+//   user: authorSchema,
+// })
 
-const singlePostsSchema = new schema.Entity('singlePosts', {
-  user: authorSchema,
-  mensaje: [mensajeSchema]
-})
+// const singlePostsSchema = new schema.Entity('singlePosts', {
+//   user: authorSchema,
+//   mensaje: [mensajeSchema]
+// })
 
-const postsSchema = new schema.Entity('posts', {
-  posts: [singlePostsSchema]
-})
+// const postsSchema = new schema.Entity('posts', {
+//   posts: [singlePostsSchema]
+// })
 
-function print(obj) {
-  console.log(inspect(obj, false, 12, true))
-}
+// function print(obj) {
+//   console.log(inspect(obj, false, 12, true))
+// }
 
 
 
@@ -54,11 +54,11 @@ class ContenedorArchivo {
     }
   }
 
-  async listarAllNormalizado() {
-    const info = await this.listarAllArray()
-    const normalizado = normalize(info, postsSchema)
-    print(normalizado)
-  }
+  // async listarAllNormalizado() {
+  //   const info = await this.listarAllArray()
+  //   const normalizado = normalize(info, postsSchema)
+  //   print(normalizado)
+  // }
 
 
   async guardar(obj) {

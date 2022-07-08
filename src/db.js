@@ -2,12 +2,12 @@ const knexMysql = require('knex')({
   client: 'mysql',
   connection: {
     host: 'localhost',
-    port:'3306',
+    port: '3306',
     user: 'root',
     password: '',
     database: 'database_productos'
   },
-  pool: {min: 2, max: 8}
+  pool: { min: 2, max: 8 }
 })
 
 knexMysql.schema.createTableIfNotExists('productos', (table) => {
@@ -16,9 +16,9 @@ knexMysql.schema.createTableIfNotExists('productos', (table) => {
   table.float('precio')
   table.string('url_imagen')
   table.timestamp('fecha_creacion').defaultTo(knexMysql.fn.now())
-}).then(()=>{
+}).then(() => {
   console.log('tabla productos creada')
-}).catch((err)=>{
+}).catch((err) => {
   console.log(err)
 })
 

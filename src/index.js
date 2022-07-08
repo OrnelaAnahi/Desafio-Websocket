@@ -5,8 +5,18 @@ const app = express()
 const http = require('http')
 const server = http.createServer(app)
 
+// COOKIE, SESSION Y MONGO
+const cookieParser = require('cookie-parser')
+const session = require('express-session')
+const MongoStore = require('connect-mongo')
+const advancedOptions = { useNewUrlParser: true, useUnifiedTopology: true }
+
+
+
 // ROUTES
 const testProducts = require('../routes/testProducts')
+const login = require('../routes/login')
+const index = require('../routes/index')
 
 // SOCKET
 const { Server } = require('socket.io')
@@ -16,9 +26,24 @@ const io = new Server(server)
 // ARCHIVOS ESTATICOS
 app.use(express.static('./public'))
 
+// COOKIES Y SESSION
+app.use(cookieParser())
+app.use(session({
+  store: MongoStore.create({
+    mongoUrl: 'mongodb+srv://ornela_anahi:ornela123@cluster0.dxfd6.mongodb.net/?retryWrites=true&w=majority',
+    mongoOptions: advancedOptions
+  }),
+  secret: 'secret',
+  resave: false,
+  saveUninitialized: false
+}))
+
+
 // EJS
 app.set('views', './views',)
 app.set('view engine', 'ejs')
+
+
 
 // CONTENEDOR
 const ContenedorProductos = require('../contenedores/ContenedorProductos')
@@ -47,7 +72,7 @@ io.on('connection', async (socket) => {
     msj.guardar({ author: mensaje.author, mensaje: mensaje.mensaje, })
     socket.emit('mensajes', await msj.listarAll())
   })
-  await msj.listarAllNormalizado()
+
   // RECIBIR PRODUCTOS
   socket.on('productos_front', async (data) => {
     console.log(data)
@@ -60,12 +85,11 @@ io.on('connection', async (socket) => {
 
 
 
-app.get('/', async (req, res) => {
-  let todosLosProductos = await productos.getAllProducts()
-  res.render('index', { todosLosProductos })
-})
+app.use('/', index)
 
 app.use('/api/productos-test', testProducts)
+
+app.use('/api/login', login)
 
 
 
